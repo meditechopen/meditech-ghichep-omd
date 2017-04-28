@@ -15,5 +15,6 @@
 #### Phần 2: Thực hành
 
 - [1. Hướng dẫn cài đặt](docs/thuchanh-omd/1.Setup-OMD.md)
+- [2. Cấu hình gửi cảnh báo](docs/thuchanh-omd/2.Send-Noitify.md)
  
 (C) MediTech JSC,. - https://meditech.vn
