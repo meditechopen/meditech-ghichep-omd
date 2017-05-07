@@ -14,7 +14,7 @@
 
 #### Phần 2: Thực hành
 
-- [1. Hướng dẫn cài đặt(docs/thuchanh-omd)
+- [1. Hướng dẫn cài đặt](docs/thuchanh-omd)
 	- [Ubuntu 14.04](docs/thuchanh-omd/1.3.Setup-OMD-U14.04.md)
 	- [Ubuntu 16.04](docs/thuchanh-omd/1.2.Setup-OMD-U16.04.md)
 	- [CentOS 7](docs/thuchanh-omd/1.1.Setup-OMD-CentOS7.md)
