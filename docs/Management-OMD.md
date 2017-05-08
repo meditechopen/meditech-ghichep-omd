@@ -75,7 +75,7 @@ Như vậy một site có tên là `monitoring` đã được tạo ra và phầ
 ### 3. Cấu hình site
 
 ```
-omd config monitoring
+omd config site1
 ```
 
 <img src="../images/22-site-config-1.png" />
@@ -105,7 +105,7 @@ Sau khi tạo xong `site`, chúng ta kích hoạt site đó và đăng nhập th
 #### Kích hoạt `site`
     
 ```
-omd start monitoring
+omd start site1
 ```
 
 <img src="../images/c7-4-active-site.png" />
@@ -113,24 +113,20 @@ omd start monitoring
 #### Truy cập vào Web UI và đăng nhập bằng `omdadmin/omd`
    
 ```
-http://địa-chỉ-ip/monitoring
+http://địa-chỉ-ip/site1
 ```
 
-<img src="../images/5.webui1.png" />
-   
-#### Chọn giao diện `Check_MK`
-   
-<img src="../images/6.webui2-checkmk.png" />
+<img src="../images/login-1.png" />
 
 Sau khi chọn xong, chúng ta sẽ thấy một giao diện khá hoàn hảo với đầy đủ những chức năng cần thiết.
 
-<img src="../images/7.webui-main.png" />
+<img src="../images/login-2.png" />
 
 <a name="5" ></a>
 ### 5. Xem trạng thái của site
 
 ```
-omd status monitoring
+omd status site1
 ```
 
 <img src="../images/22-site-status.png" />
@@ -143,11 +139,11 @@ Mặc định, user và password được cấp cho `site` mới là `omdadmin/o
 
 Vào Menu, trong `WATO - Configuration`, chọn `User` (1), chọn tiếp chỉnh sửa (2)
 
-<img src="../images/8.paas1.png" />
+<img src="../images/8.pass1.png" />
 
 Kéo xuống phần `Security` và thay đổi thông tin
 
-<img src="../images/8.paas2.png" />
+<img src="../images/8.pass2.png" />
 
 Sau đó bấm `SAVE` để lưu lại thông tin.
 
@@ -155,7 +151,7 @@ Sau đó bấm `SAVE` để lưu lại thông tin.
 ### 7. Dừng hoạt động của site
 
 ```
-omd stop monitoring
+omd stop site1
 ```
 
 <img src="../images/22-site-stop.png" />
@@ -164,7 +160,7 @@ omd stop monitoring
 ### 8. Xóa site
 
 ```
-omd rm monitoring
+omd rm site1
 ```
 
 Gõ `YES` để đồng ý xóa site.
