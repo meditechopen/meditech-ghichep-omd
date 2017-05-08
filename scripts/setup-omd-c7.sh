@@ -9,7 +9,7 @@ omd start site1
 ## Open port 80 for httpd
 check_fw=`rpm -qa | grep firewalld`
 setenforce 0
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/g'/etc/selinux/config
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 if [ -n "$check_fw" ]
 then
   firewall-cmd --add-port=80/tcp --permanent

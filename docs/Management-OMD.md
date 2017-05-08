@@ -62,10 +62,10 @@ omd restore    [SITE] [-|ARCHIVE_PATH] Restores the backup of a site to an exist
 Trước khi sử dụng, chúng ta phải khai báo một `site`:
 
 ```
-omd create monitoring
+omd create site1
 ```
 
-<img src="../images/3.info-site.png" />
+<img src="../images/c7-4-create-site.png" />
 
 Như vậy một site có tên là `monitoring` đã được tạo ra và phần thông tin được tô đỏ trong hình. Mặc định, username được cấp là `omdadmin` và password là `omd`.
 
@@ -108,7 +108,7 @@ Sau khi tạo xong `site`, chúng ta kích hoạt site đó và đăng nhập th
 omd start monitoring
 ```
 
-<img src="../images/4.active-site.png" />
+<img src="../images/c7-4-active-site.png" />
 
 #### Truy cập vào Web UI và đăng nhập bằng `omdadmin/omd`
    
