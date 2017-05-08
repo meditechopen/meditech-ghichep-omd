@@ -3,12 +3,13 @@
 ### Menu
 
 - [1. Giới thiệu](#1)
-- [2. Đổi mật khẩu mặc định cho `omdadmin`](#2)
-- [3. Thêm site mới](#3)
-- [4. Cấu hình site](#4)
-- [5. Khởi động site](#5)
-- [6. Xem trạng thái của site](#6)
-- [7. Xóa site](#7)
+- [2. Thêm site mới](#2)
+- [3. Cấu hình site](#3)
+- [4. Khởi động site](#4)
+- [5. Xem trạng thái của site](#5)
+- [6. Đổi mật khẩu mặc định cho omdadmin](#6)
+- [7. Dừng hoạt động của site](#7)
+- [8. Xóa site](#8)
 
 <a name="1" ></a>
 ### 1. Giới thiệu
@@ -144,7 +145,7 @@ Kéo xuống phần `Security` và thay đổi thông tin
 Sau đó bấm `SAVE` để lưu lại thông tin.
 
 <a name="7" ></a>
-### 7. Tắt hoạt động của site
+### 7. Dừng hoạt động của site
 
 ```
 omd stop monitoring
@@ -162,3 +163,11 @@ omd rm monitoring
 Gõ `YES` để đồng ý xóa site.
 
 <img src="../images/22-site-remove.png" />
+
+Sau khi hoàn thành nắm được một vài kiến thức cơ bản trên, chúng ta tiếp tục tìm hiểu những bài viết tiếp theo:
+
+- [2. Cài đặt Agent trên host cần giám sát](docs/2.Install-agent.md)
+- [3. Cấu hình Active Check dịch vụ](docs/3.Active-check.md)
+- [4. Đặt ngưỡng cảnh báo cho dịch vụ](docs/4.Set-threshold.md)
+- [5. Cấu hình gửi mail cảnh báo sử dụng Gmail](docs/5.Send-Noitify.md)
+- [6. Thêm plugin vào OMD](docs/6.Add-plugins.md)
