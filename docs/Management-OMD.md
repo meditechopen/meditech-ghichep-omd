@@ -166,8 +166,8 @@ Gõ `YES` để đồng ý xóa site.
 
 Sau khi hoàn thành nắm được một vài kiến thức cơ bản trên, chúng ta tiếp tục tìm hiểu những bài viết tiếp theo:
 
-- [2. Cài đặt Agent trên host cần giám sát](docs/2.Install-agent.md)
-- [3. Cấu hình Active Check dịch vụ](docs/3.Active-check.md)
-- [4. Đặt ngưỡng cảnh báo cho dịch vụ](docs/4.Set-threshold.md)
-- [5. Cấu hình gửi mail cảnh báo sử dụng Gmail](docs/5.Send-Noitify.md)
-- [6. Thêm plugin vào OMD](docs/6.Add-plugins.md)
+- [2. Cài đặt Agent trên host cần giám sát](2.Install-agent.md)
+- [3. Cấu hình Active Check dịch vụ](3.Active-check.md)
+- [4. Đặt ngưỡng cảnh báo cho dịch vụ](4.Set-threshold.md)
+- [5. Cấu hình gửi mail cảnh báo sử dụng Gmail](5.Send-Noitify.md)
+- [6. Thêm plugin vào OMD](6.Add-plugins.md)
