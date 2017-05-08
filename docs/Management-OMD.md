@@ -77,15 +77,15 @@ omd config monitoring
 	
 	<img src="../images/22-site-config-basic.png" />
 	
-	- `Web UI`
+	- `Web UI`: Cấu hình về Web UI
 	
 	<img src="../images/22-site-config-gui.png" />
 	
-	- `Addons`
+	- `Addons`: Cấu hình các addon
 	
 	<img src="../images/22-site-config-addons.png" />
 	
-	- `Distributed Monitoring`
+	- `Distributed Monitoring`: Cấu hình giám sát tập trung
 	
 	<img src="../images/22-site-config-dm.png" />
 
