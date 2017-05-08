@@ -2,13 +2,13 @@
 
 ### Menu
 
-[1. Giới thiệu](#1)
-[2. Đổi mật khẩu mặc định cho `omdadmin`](#2)
-[3. Thêm site mới](#3)
-[4. Cấu hình site](#4)
-[5. Khởi động site](#5)
-[6. Xem trạng thái của site](#6)
-[7. Xóa site](#7)
+- [1. Giới thiệu](#1)
+- [2. Đổi mật khẩu mặc định cho `omdadmin`](#2)
+- [3. Thêm site mới](#3)
+- [4. Cấu hình site](#4)
+- [5. Khởi động site](#5)
+- [6. Xem trạng thái của site](#6)
+- [7. Xóa site](#7)
 
 <a name="1" ></a>
 ### 1. Giới thiệu
@@ -74,12 +74,19 @@ omd config monitoring
 
 - Trong đó:
 	- `Basic`: Cấu hình core của OMD
+	
 	<img src="../images/22-site-config-basic.png" />
+	
 	- `Web UI`
+	
 	<img src="../images/22-site-config-gui.png" />
+	
 	- `Addons`
+	
 	<img src="../images/22-site-config-addons.png" />
+	
 	- `Distributed Monitoring`
+	
 	<img src="../images/22-site-config-dm.png" />
 
 <a name="4" ></a>
