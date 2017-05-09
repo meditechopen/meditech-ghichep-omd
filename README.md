@@ -23,7 +23,7 @@
 - [4. Đặt ngưỡng cảnh báo cho dịch vụ](docs/4.Set-threshold.md)
 - [5. Cấu hình gửi mail cảnh báo sử dụng Gmail](docs/5.Send-Noitify.md)
 - [6. Thêm plugin vào OMD](docs/6.Add-plugins.md)
-- [7. Distributed Monitoring](7.Distributed.md)
-- **Bonus:** [Quản lý các site trên OMD](Management-OMD.md)
+- [7. Distributed Monitoring](docs/7.Distributed.md)
+- **Bonus:** [Quản lý các site trên OMD](docs/Management-OMD.md)
 
 (C) MediTech JSC,. - https://meditech.vn
