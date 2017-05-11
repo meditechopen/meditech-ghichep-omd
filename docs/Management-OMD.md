@@ -17,6 +17,7 @@ Trước khi thực hiện bước này, vui lòng cài đặt server OMD theo h
 - [6. Đổi mật khẩu mặc định cho omdadmin](#6)
 - [7. Dừng hoạt động của site](#7)
 - [8. Xóa site](#8)
+- [9. Backup và Restore site](#9)
 
 <a name="1" ></a>
 ### 1. Giới thiệu
@@ -148,7 +149,30 @@ Kéo xuống phần `Security` và thay đổi thông tin
 Sau đó bấm `SAVE` để lưu lại thông tin.
 
 <a name="7" ></a>
-### 7. Dừng hoạt động của site
+### 7. Backup dữ liệu cho site
+
+Ở bài hướng dẫn này, tôi đã theo dõi [Active check](3.Active-check.md) với YouTube và cũng thêm 1 [user](5.Send-Noitify.md#22) trên site là `userhn`.
+
+Thông tin trên site `hanoi`
+
+<img src="../images/host-hn.png" />
+
+<img src="../images/user-hn.png" />
+
+SChúng ta backup lại thông tin theo các bước sau.
+
+Đầu tiên trên Web UI `site1`, chúng ta tìm đến **WATO - Configuration**, **Backup & Restore**, **Create Snapshot**
+
+<img src="../images/dm-bk-1.png" />
+
+Sau đó, tải bản backup (Snapshot) về máy tính của bạn. Chúng ta nhìn vào thông báo, và chọn đúng thời gian chúng ta backup.
+
+<img src="../images/dm-bk-2.png" />
+
+<img src="../images/dm-bk-3.png" />
+
+<a name="8" ></a>
+### 8. Dừng hoạt động của site
 
 ```
 omd stop site1
@@ -156,8 +180,8 @@ omd stop site1
 
 <img src="../images/22-site-stop.png" />
 
-<a name="8" ></a>
-### 8. Xóa site
+<a name="9" ></a>
+### 99. Xóa site
 
 ```
 omd rm site1
@@ -167,10 +191,14 @@ Gõ `YES` để đồng ý xóa site.
 
 <img src="../images/22-site-remove.png" />
 
-Sau khi hoàn thành nắm được một vài kiến thức cơ bản trên, chúng ta tiếp tục tìm hiểu những bài viết tiếp theo:
+<a name="10" ></a>
+### 10
+
+Tham khảo những bài viết khác:
 
 - [2. Cài đặt Agent trên host cần giám sát](2.Install-agent.md)
 - [3. Cấu hình Active Check dịch vụ](3.Active-check.md)
 - [4. Đặt ngưỡng cảnh báo cho dịch vụ](4.Set-threshold.md)
 - [5. Cấu hình gửi mail cảnh báo sử dụng Gmail](5.Send-Noitify.md)
 - [6. Thêm plugin vào OMD](6.Add-plugins.md)
+- [7. Distributed Monitoring](7.Distributed.md)
