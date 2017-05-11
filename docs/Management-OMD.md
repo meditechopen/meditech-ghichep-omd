@@ -15,9 +15,10 @@ Trước khi thực hiện bước này, vui lòng cài đặt server OMD theo h
 - [4. Khởi động site](#4)
 - [5. Xem trạng thái của site](#5)
 - [6. Đổi mật khẩu mặc định cho omdadmin](#6)
-- [7. Dừng hoạt động của site](#7)
-- [8. Xóa site](#8)
-- [9. Backup và Restore site](#9)
+- [7. Backup dữ liệu của site](#7)
+- [8. Dừng hoạt động của site](#8)
+- [9. Xóa site](#9)
+- [10. Restore dữ liệu sang site mới](#10)
 
 <a name="1" ></a>
 ### 1. Giới thiệu
@@ -153,7 +154,7 @@ Sau đó bấm `SAVE` để lưu lại thông tin.
 
 Ở bài hướng dẫn này, tôi đã theo dõi [Active check](3.Active-check.md) với YouTube và cũng thêm 1 [user](5.Send-Noitify.md#22) trên site là `userhn`.
 
-Thông tin trên site `hanoi`
+Thông tin trên site `site1`
 
 <img src="../images/host-hn.png" />
 
@@ -234,7 +235,7 @@ Sau đó, chúng ta kiểm tra lại thông tin host và user.
 
 <img src="../images/23-rt-10.png" />
 
-Tham khảo những bài viết khác:
+## Tham khảo những bài viết khác:
 
 - [2. Cài đặt Agent trên host cần giám sát](2.Install-agent.md)
 - [3. Cấu hình Active Check dịch vụ](3.Active-check.md)
