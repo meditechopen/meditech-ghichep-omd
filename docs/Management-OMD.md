@@ -15,8 +15,10 @@ Trước khi thực hiện bước này, vui lòng cài đặt server OMD theo h
 - [4. Khởi động site](#4)
 - [5. Xem trạng thái của site](#5)
 - [6. Đổi mật khẩu mặc định cho omdadmin](#6)
-- [7. Dừng hoạt động của site](#7)
-- [8. Xóa site](#8)
+- [7. Backup dữ liệu của site](#7)
+- [8. Dừng hoạt động của site](#8)
+- [9. Xóa site](#9)
+- [10. Restore dữ liệu sang site mới](#10)
 
 <a name="1" ></a>
 ### 1. Giới thiệu
@@ -67,9 +69,9 @@ omd create site1
 
 <img src="../images/c7-4-create-site.png" />
 
-Như vậy một site có tên là `monitoring` đã được tạo ra và phần thông tin được tô đỏ trong hình. Mặc định, username được cấp là `omdadmin` và password là `omd`.
+Như vậy một site có tên là `site1` đã được tạo ra và phần thông tin trong hình. Mặc định, username được cấp là `omdadmin` và password là `omd`.
 
-**Chú ý:** Có thể tạo nhiều `site` và tên được chọn tùy ý.
+**Chú ý:** Có thể tạo nhiều `site` và tên được chọn tùy ý bằng bao gồm ký tự `A-Z`, `a-z`, `0-9` và ký tự `_`.
 
 <a name="3" ></a>
 ### 3. Cấu hình site
@@ -148,7 +150,34 @@ Kéo xuống phần `Security` và thay đổi thông tin
 Sau đó bấm `SAVE` để lưu lại thông tin.
 
 <a name="7" ></a>
-### 7. Dừng hoạt động của site
+### 7. Backup dữ liệu cho site
+
+Ở bài hướng dẫn này, tôi đã theo dõi [Active check](3.Active-check.md) với YouTube và cũng thêm 1 [user](5.Send-Noitify.md#22) trên site là `userhn`.
+
+Thông tin trên site `site1`
+
+<img src="../images/host-hn.png" />
+
+<img src="../images/user-hn.png" />
+
+Chúng ta backup lại thông tin theo các bước sau:
+
+Đầu tiên trên Web UI `site1`, chúng ta tìm đến **WATO - Configuration**, **Backup & Restore**, **Create Snapshot**
+
+<img src="../images/dm-bk-1.png" />
+
+Sau đó, tải bản backup (Snapshot) về máy tính của bạn. Chúng ta nhìn vào thông báo, và chọn đúng thời gian chúng ta backup.
+
+<img src="../images/dm-bk-2.png" />
+
+<img src="../images/dm-bk-3.png" />
+
+Lưu lại trên máy tính của bạn, ở đây tôi đã đổi tên file là `site1-backup.tar`
+
+<img src="../images/dm-bk-4.png" />
+
+<a name="8" ></a>
+### 8. Dừng hoạt động của site
 
 ```
 omd stop site1
@@ -156,8 +185,8 @@ omd stop site1
 
 <img src="../images/22-site-stop.png" />
 
-<a name="8" ></a>
-### 8. Xóa site
+<a name="9" ></a>
+### 9. Xóa site
 
 ```
 omd rm site1
@@ -167,10 +196,50 @@ Gõ `YES` để đồng ý xóa site.
 
 <img src="../images/22-site-remove.png" />
 
-Sau khi hoàn thành nắm được một vài kiến thức cơ bản trên, chúng ta tiếp tục tìm hiểu những bài viết tiếp theo:
+<a name="10" ></a>
+### 10. Restore dữ liệu của site
+
+Ở bước này, chúng ta cần tạo một site mới có tên là `site1_backup` theo [hướng dẫn bên trên.](#2) Sau đó kích hoạt nó ở [bước 4](#4) và restore lại dữ liệu của `site1` mà ta đã xóa ở **bước 7**.
+
+Đầu tiên, chúng ta đăng nhập vào Web UI của site và kích hoạt tính năng restore dữ liệu kém bảo mật. **Tại sao phải bật tính năng này?** Câu trả lời là mỗi site sẽ được gán cho một hash và file backup (Snapshot) sẽ gắn liền với site. Khi chúng ta tạo site mới thì hash này cũng thay đổi, vì vậy chúng ta phải kích hoạt tính năng này để Restore lại dữ liệu của site cũ.
+
+Trên tab **WATO Configuration**, chúng ta chọn **Global Settings** chọn mục **Administration Tools (WATO)** và chỉnh **Allow upload of insecure WATO snapshots** từ `OFF` sang `ON` như hình.
+
+<img src="../images/23-rt-1.png" />
+
+Kích hoạt xong, chúng ta bấm vào **Backup & Restore** trên tab **WATO Configuration** và chọn file backup lúc trước ở bước 7. 
+
+<img src="../images/23-rt-2.png" />
+
+Sau khi chọn file xong, chúng ta bấm vào nút **Restore from file**.
+
+<img src="../images/23-rt-3.png" />
+
+Như đã giải thích ở trên, do đây là file backup của một site khác nên hash của chúng không trùng nhau vì thế OMD báo là *Untrust* - hình tròn màu đỏ. Bỏ qua điều này, chúng ta bấm vào **Restore snapshot**
+
+<img src="../images/23-rt-4.png" />
+
+<img src="../images/23-rt-5.png" />
+
+Sau đó chúng ta thấy thông báo Restore thành công và lưu lại những thay đổi.
+
+<img src="../images/23-rt-6.png" />
+
+<img src="../images/23-rt-7.png" />
+
+<img src="../images/23-rt-8.png" />
+
+Sau đó, chúng ta kiểm tra lại thông tin host và user.
+
+<img src="../images/23-rt-9.png" />
+
+<img src="../images/23-rt-10.png" />
+
+## Tham khảo những bài viết khác:
 
 - [2. Cài đặt Agent trên host cần giám sát](2.Install-agent.md)
 - [3. Cấu hình Active Check dịch vụ](3.Active-check.md)
 - [4. Đặt ngưỡng cảnh báo cho dịch vụ](4.Set-threshold.md)
 - [5. Cấu hình gửi mail cảnh báo sử dụng Gmail](5.Send-Noitify.md)
 - [6. Thêm plugin vào OMD](6.Add-plugins.md)
+- [7. Distributed Monitoring](7.Distributed.md)
