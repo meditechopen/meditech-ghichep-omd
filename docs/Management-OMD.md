@@ -199,7 +199,7 @@ Gõ `YES` để đồng ý xóa site.
 <a name="10" ></a>
 ### 10. Restore dữ liệu của site
 
-Ở bước này, chúng ta cần tạo một site mới có tên là `site1_backup` theo [hướng dẫn bên trên.](#2) sau đó kích hoạt nó ở [bước 4](#4) và restore lại dữ liệu của `site1` mà ta đã xóa ở **bước 7**.
+Ở bước này, chúng ta cần tạo một site mới có tên là `site1_backup` theo [hướng dẫn bên trên.](#2) Sau đó kích hoạt nó ở [bước 4](#4) và restore lại dữ liệu của `site1` mà ta đã xóa ở **bước 7**.
 
 Đầu tiên, chúng ta đăng nhập vào Web UI của site và kích hoạt tính năng restore dữ liệu kém bảo mật. **Tại sao phải bật tính năng này?** Câu trả lời là mỗi site sẽ được gán cho một hash và file backup (Snapshot) sẽ gắn liền với site. Khi chúng ta tạo site mới thì hash này cũng thay đổi, vì vậy chúng ta phải kích hoạt tính năng này để Restore lại dữ liệu của site cũ.
 
