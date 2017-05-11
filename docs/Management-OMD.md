@@ -69,9 +69,9 @@ omd create site1
 
 <img src="../images/c7-4-create-site.png" />
 
-Như vậy một site có tên là `monitoring` đã được tạo ra và phần thông tin được tô đỏ trong hình. Mặc định, username được cấp là `omdadmin` và password là `omd`.
+Như vậy một site có tên là `site1` đã được tạo ra và phần thông tin trong hình. Mặc định, username được cấp là `omdadmin` và password là `omd`.
 
-**Chú ý:** Có thể tạo nhiều `site` và tên được chọn tùy ý.
+**Chú ý:** Có thể tạo nhiều `site` và tên được chọn tùy ý bằng bao gồm ký tự `A-Z`, `a-z`, `0-9` và ký tự `_`.
 
 <a name="3" ></a>
 ### 3. Cấu hình site
