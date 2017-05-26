@@ -11,7 +11,7 @@
 
 #### Phần 1: Lý thuyết
 
-- [1. Tổng quan về OMD - Check_MK](1. tongquan-omd.md)
+- [1. Tổng quan về OMD - Check_MK](1.tongquan-omd.md)
 - [2. Tại sao sử dụng OMD?](2.taisaosudung-omd.md)
 
 #### Phần 2: Thực hành
