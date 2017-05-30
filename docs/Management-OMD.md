@@ -19,6 +19,7 @@ Trước khi thực hiện bước này, vui lòng cài đặt server OMD theo h
 - [8. Dừng hoạt động của site](#8)
 - [9. Xóa site](#9)
 - [10. Restore dữ liệu sang site mới](#10)
+- [11. Reset mật khẩu omdadmin khi đăng nhập Web UI](#11)
 
 <a name="1" ></a>
 ### 1. Giới thiệu
@@ -234,6 +235,29 @@ Sau đó, chúng ta kiểm tra lại thông tin host và user.
 <img src="../images/23-rt-9.png" />
 
 <img src="../images/23-rt-10.png" />
+
+<a name="11" ></a>
+### 11. Reset mật khẩu omdadmin khi đăng nhập Web UI
+
+Trong một số trường hợp, chúng ta [thay đổi password](#6) cho omdadmin nhưng lại quên mật khẩu điều này gây rắc rối cho ta khá nhiều. Đừng lo lắng về điều đó, tôi sẽ hướng dẫn các bạn cách để khôi phục lại mật khẩu trong vòng 'một nốt nhạc'.
+
+Mở file lưu trữ mật khẩu đăng nhập:
+
+```
+vi /opt/omd/sites/site1/etc/htpasswd
+```
+
+**Chú ý**: 
+- `site1` là tên site của bạn
+- `/opt/omd` là thư mục cài đặt mặc định của OMD
+
+Sửa file với nội dung:
+
+```
+omdadmin:M29dfyFjgy5iA
+```
+
+Lưu file và đăng nhập lại trên web UI bằng *odmadmin/odm*.
 
 ## Tham khảo những bài viết khác:
 
