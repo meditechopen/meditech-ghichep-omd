@@ -28,7 +28,7 @@
 - [7. Distributed Monitoring](docs/7.Distributed.md)
 - **Bonus:** 
 	- [Quản lý các site trên OMD](docs/Management-OMD.md)
-	- [Giám sát dịch vụ RabbitMQ](8.Monitor-RabbitMQ.md)
+	- [Giám sát dịch vụ RabbitMQ](docs/8.Monitor-RabbitMQ.md)
 	- [Giám sát dịch vụ MySQL](docs/9.Monitor-MySQL.md)
 
 (C) MediTech JSC,. - https://meditech.vn
