@@ -26,6 +26,9 @@
 - [5. Cấu hình gửi mail cảnh báo sử dụng Gmail](docs/5.Send-Noitify.md)
 - [6. Thêm plugin vào OMD](docs/6.Add-plugins.md)
 - [7. Distributed Monitoring](docs/7.Distributed.md)
-- **Bonus:** [Quản lý các site trên OMD](docs/Management-OMD.md)
+- **Bonus:** 
+	- [Quản lý các site trên OMD](docs/Management-OMD.md)
+	- [Giám sát dịch vụ RabbitMQ](docs/8.Monitor-RabbitMQ.md)
+	- [Giám sát dịch vụ MySQL](docs/9.Monitor-MySQL.md)
 
 (C) MediTech JSC,. - https://meditech.vn

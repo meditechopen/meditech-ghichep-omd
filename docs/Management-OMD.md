@@ -257,7 +257,7 @@ Sửa file với nội dung:
 omdadmin:M29dfyFjgy5iA
 ```
 
-Lưu file và đăng nhập lại trên web UI bằng *odmadmin/odm*.
+Lưu file và đăng nhập lại trên web UI bằng *omdadmin/omd*.
 
 ## Tham khảo những bài viết khác:
 
