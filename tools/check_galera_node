@@ -1,0 +1,45 @@
+#!/bin/bash
+
+###########################
+#
+# Plugin by HoangDH
+# Released: 9/6/2017
+#
+############################
+
+
+USERNAME=$1
+PASSWORD=$2
+HOST=$3
+PORT=$4
+get_node()
+{
+	i_node=`mysql -u $1 -p$2 -e "SHOW GLOBAL STATUS LIKE 'wsrep_cluster_size';" -h $3 -P $4 2> /dev/null | awk {'print $2'} | tail -n 1`
+	RUNNING_NODE=`mysql -u $1 -p$2 -e "SHOW GLOBAL STATUS LIKE 'wsrep_%_addresses';" -h $3 -P $4 2> /dev/null | awk {'print $2'} | tail -n 1`
+	case $i_node in
+		3*)
+			echo "OK. $i_node nodes. Running!!!"
+			exit 0
+			;;
+		[1-2]*)
+			echo "WARNING. RUNNING $i_node NODE(S): $RUNNING_NODE"
+			exit 1
+			;;
+		*)
+			echo "Cannot connect to $3:$4"
+			exit 2
+			;;
+	esac
+}
+case $# in
+	3*)
+	PORT=3306
+	get_node $USERNAME $PASSWORD $HOST $PORT
+	;;
+	4*)
+	get_node $USERNAME $PASSWORD $HOST $PORT
+	;;
+	*)
+	echo "USAGE: ./$0 user password host-db port"
+esac
+

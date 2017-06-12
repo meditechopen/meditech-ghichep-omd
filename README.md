@@ -23,7 +23,8 @@
 - [2. Cài đặt Agent trên host cần giám sát](docs/2.Install-agent.md)
 - [3. Cấu hình Active Check dịch vụ](docs/3.Active-check.md)
 - [4. Đặt ngưỡng cảnh báo cho dịch vụ](docs/4.Set-threshold.md)
-- [5. Cấu hình gửi mail cảnh báo sử dụng Gmail](docs/5.Send-Noitify.md)
+- [5.1 Cấu hình gửi mail cảnh báo sử dụng Gmail](docs/5.Send-Noitify.md)
+- [5.2 Cấu hình gửi cảnh báo sử dụng Slack](docs/5.3-Send-Noitify_Slack.md)
 - [6. Thêm plugin vào OMD](docs/6.Add-plugins.md)
 - [7. Distributed Monitoring](docs/7.Distributed.md)
 - **Bonus:** 
