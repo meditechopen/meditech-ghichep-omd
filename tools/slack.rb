@@ -15,7 +15,7 @@ require 'json'
 
 ## Chinh sua thong tin Slack va OMD
 domain = 'meditechjsc.slack.com'
-webhook_url = 'https://hooks.slack.com/services/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'
+webhook_url = 'https://hooks.slack.com/services/T43EZN8L8/XXXXXXXXX/1RPRoM6iZYXGKPRTraDr6IDB'
 monitoring_server = '192.168.100.139'
 monitoring_site = 'monitoring'
 
