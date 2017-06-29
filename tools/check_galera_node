@@ -40,6 +40,6 @@ case $# in
 	get_node $USERNAME $PASSWORD $HOST $PORT
 	;;
 	*)
-	echo -e "USAGE: ./$0 USERNAME PASSWORD HOST PORT\n\nUSERNAME: Username of database\nPASSWORD: Password of user\nHOST: IP or FQDN of Database server\nPORT <OPTION>: MySQL or MariaDB port. Default: 3306"
+	echo -e "USAGE: ./$0 USERNAME PASSWORD HOSTNAME PORT\n\nUSERNAME: The mysql db user\nPASSWORD: The mysql db user's password\nHOSTNAME: The database server's hostname\nPORT <OPTION>: The database's port. Default: 3306"
 esac
 
