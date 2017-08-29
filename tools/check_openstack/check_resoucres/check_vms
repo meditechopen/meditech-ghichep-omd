@@ -1,0 +1,17 @@
+#!/bin/bash
+###
+#
+# Check VMs on all projects
+# Author: HoangDH - daohuyhoang87@gmail.com
+# Release: 28/8/2017 - 3:01PM
+#
+###
+
+source /root/keystonerc_admin
+openstack server list --all-projects > /tmp/server_list.h2
+vms_total=$(cat /tmp/server_list.h2 | awk  '{ print $3 }' FS="|" | grep -Ev "^ Name|^$"  | wc -l)
+vms_run=$(cat /tmp/server_list.h2 | grep -w "ACTIVE" | awk  '{ print $3 }' FS="|" | wc -l)
+rm -rf /tmp/server_list.h2
+
+echo "Server Running: $vms_run ; Server non-running: $(expr $vms_total - $vms_run)/$vms_total"
+exit 0

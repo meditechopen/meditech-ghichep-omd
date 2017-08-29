@@ -1,0 +1,23 @@
+#!/bin/bash
+###
+#
+# Check Network on OpenStack
+# Author: HoangDH - daohuyhoang87@gmail.com
+# Release: 28/8/2017 - 3:07PM
+#
+###
+
+source /root/keystonerc_admin
+openstack ip availability list > /tmp/network_list.h2
+net_total=$(cat /tmp/network_list.h2 | awk  '{ print $3 }' FS="|" | grep -Ev "^ Network Name|^$"  | wc -l)
+networks=$(cat /tmp/network_list.h2 | awk  '{ print $3 }' FS="|" | grep -Ev "^ Network Name|^$")
+for x in $networks
+	do
+		ip_total=$(cat /tmp/network_list.h2 | grep -w "$x" | awk  '{ print $4 }' FS="|" | grep -Ev "^*IPs|^$")
+		ip_used=$(cat /tmp/network_list.h2 | grep -w "$x" | awk  '{ print $5 }' FS="|" | grep -Ev "^*IPs|^$")
+		echo "; $x - Used IPs: $ip_used/$ip_total" >> /tmp/network_list_ip.h2
+	done
+ips=$(cat /tmp/network_list_ip.h2)
+rm -rf /tmp/network_list.h2 /tmp/network_list_ip.h2
+echo "Total Network: $net_total. "$ips
+exit 0

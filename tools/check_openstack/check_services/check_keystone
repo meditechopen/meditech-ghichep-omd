@@ -1,0 +1,31 @@
+#!/bin/bash
+###
+#
+# Check Keystone Service
+# Author: HoangDH - daohuyhoang87@gmail.com
+# Release: 25/8/2017 - 4:29PM
+#
+###
+KEYSTONERC="/root/keystonerc_admin"
+ports=$(netstat -nltp | egrep -w '5000|35357')
+httpd_flag=$(systemctl status httpd | grep -w 'active (running)')
+
+if [ -z "$ports" ] && [ -z "$httpd_flag" ]
+then
+	echo "HTTPD or KEYSTONE is/are not running."
+	exit 2
+else
+	source $KEYSTONERC > /dev/null 2>&1
+	openstack token issue > /tmp/err_keystone.h2 2>&1
+	token=$(cat /tmp/err_keystone.h2 | egrep -w "Missing value|HTTP 401")
+	rm -rf /tmp/err_keystone.h2
+	if [ -n "$token" ]
+	then
+		echo -e "Keystone is running. Can't get token!!! Check your \"$KEYSTONERC\" files."
+		
+		exit 1
+	else
+		echo "KEYSTONE is running."
+		exit 0
+	fi
+fi 

@@ -1,0 +1,18 @@
+#!/bin/bash
+###
+#
+# Check total image on OpenStack
+# Author: HoangDH - daohuyhoang87@gmail.com
+# Release: 28/8/2017 - 4:10PM
+#
+###
+
+source /root/keystonerc_admin
+openstack image list > /tmp/image_list.h2
+
+## Count total images via 'ID' column
+
+img_total=$(cat /tmp/image_list.h2 | awk  '{ print $2 }' FS="|" | grep -Ev "^ ID|^$" | wc -l)
+echo "Total Images: $img_total."
+exit 0
+
