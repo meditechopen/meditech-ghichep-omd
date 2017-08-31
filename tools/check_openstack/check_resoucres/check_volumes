@@ -1,0 +1,20 @@
+#!/bin/bash
+###
+#
+# Check total Volumes on OpenStack
+# Author: HoangDH - daohuyhoang87@gmail.com
+# Release: 28/8/2017 - 3:55PM
+#
+###
+
+source /root/keystonerc_admin
+openstack volume list --all > /tmp/volume_list.h2
+
+## Count total volume via 'ID' column
+
+vol_total=$(cat /tmp/volume_list.h2 | awk  '{ print $2 }' FS="|" | grep -Ev "^ ID|^$" | wc -l)
+vol_available=$(cat /tmp/volume_list.h2 | grep -w "available" | awk  '{ print $2 }' FS="|" | wc -l)
+vol_inuse=$(cat /tmp/volume_list.h2 | grep -w "in-use" | awk  '{ print $2 }' FS="|" | wc -l)
+echo "In-use volumes: $vol_inuse; Available: $vol_available; Total: $vol_total."
+exit 0
+

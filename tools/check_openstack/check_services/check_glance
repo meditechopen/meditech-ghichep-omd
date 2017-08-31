@@ -1,0 +1,42 @@
+#!/bin/bash
+###
+#
+# Check Neutron Service
+# Author: HoangDH - daohuyhoang87@gmail.com
+# Release: 23/8/2017 - 3:55PM
+#
+###
+i=0
+for service in openstack-glance-api openstack-glance-registry
+do 
+	flag=$(systemctl status $service | grep 'active (running)')
+	if [ -n "$flag" ]
+	then
+		i=$(expr $i + 1)
+	else
+		echo $service >> /tmp/glance-service.h2
+	fi
+done 
+
+
+case $i in
+	2)
+		echo "Glance is running."
+		exit 0
+		;;
+	1)
+		s=`cat /tmp/glance-service.h2`
+		rm -rf /tmp/glance-service.h2
+		echo $s" is not running on $(hostname)."
+		exit 1
+		;;	
+	0) 
+		echo -e "Glance is not running.\nThe \"openstack-glance-api openstack-glance-registry\" are not running on $(hostname)."
+		exit 2
+		;;
+	*)
+		echo "Glance is not running."
+		exit 3
+		;;	
+esac
+	
