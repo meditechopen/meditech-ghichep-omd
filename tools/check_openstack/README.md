@@ -8,6 +8,7 @@
 - [2. Cấu hình check_mk](#2)
 
 <a name="1" />
+
 ### 1. Tải plugin
 
 - Tải plugin ở 2 thư mục `check_resoucres` và `check_services`
@@ -26,6 +27,7 @@ chmod +x *
 ```
 
 <a name="2" />
+
 ### 2. Cấu hình check_mk
 
 - **Bước 1**: Copy các file plugin
