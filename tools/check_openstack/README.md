@@ -1,82 +1,57 @@
-# Giải thích cách hoạt động, check của plugin
+## Hướng dẫn sử dụng vào check_mk
 
-## I. Các dịch vụ
+### Tải plugin
 
-### 1. Cinder
+- Tải plugin ở 2 thư mục `check_resoucres` và `check_services`
 
-- Đầu tiên, check dịch vụ `openstack-cinder-api`
-	- Nếu DOWN, cảnh báo Cirtical
-	- Nếu chạy, check tiếp các dịch vụ bằng câu lệnh `openstack volume service list`
-		- Kiểm tra lần lượt các dịch vụ DOWN (trên từng node)
-			- cinder-backup 
-			- cinder-volume 
-			- cinder-scheduler
-			
-### 2. Glance
+```
+https://github.com/meditechopen/meditech-ghichep-omd/tree/master/tools/check_openstack
+```
 
-- Check lần lượt 2 dịch vụ `openstack-glance-api` và `openstack-glance-registry`
-	- Nếu 1 trong 2 dịch vụ DOWN -> Cảnh báo Warning
-	- Cả 2 dịch vụ DOWN -> Cảnh báo Cirtical
-	 
+Ví dụ, chúng ta tải các plugin về thư mục `/opt/check_openstack`
+
+- Phân quyền cho các plugins
+
+```
+cd /opt/check_openstack
+chmod +x *
+```
+
+### check_mk
+
+**Chú ý**: Các bước này làm trên node `controller` của OpenStack
+
+- **Bước 1**: Copy các file plugin
+
+[Hướng dẫn cài check_mk Agent trên máy cần giám sát.](https://github.com/hoangdh/meditech-ghichep-omd/blob/master/docs/2.Install-agent.md)
+
+Thư mục mặc định: `/usr/lib/check_mk_agent/plugins`
+
+Xác định lại thư mục:
+
+```
+[root@controller ~]# check_mk_agent | grep 'PluginsDirectory'
+PluginsDirectory: /usr/lib/check_mk_agent/plugins
+```
+
+- **Bước 2**: Thêm cấu hình vào file `mrpe.cfg`
+
+	- Cú pháp như sau:
+
+	```
+	<Tên-Hiển-thị-trên-Dashboard> <Đường-dẫn-plugin>
+	```
 	
-### 3. Keystone
-
-- Đầu tiên, check dịch vụ `httpd`
-	- Nếu DOWN, cảnh báo Cirtical
-	- Nếu chạy, check tiếp 2 port 5000 và 35357
-		- Nếu chạy, Lấy token
-			- Nếu chạy -> OK
-			- Nếu không chạy, Báo lỗi File biến Môi trường
-		- Không chạy -> Warning
-
-### 4. Neutron
-
-- Đầu tiên, check dịch vụ `neutron-server`
-	- Nếu DOWN, cảnh báo Cirtical
-		- Nếu chạy, check tiếp các dịch vụ bằng câu lệnh `openstack network agent list`
-		- Kiểm tra lần lượt các dịch vụ DOWN (trên từng node)
-			- neutron-dhcp-agent
-			- neutron-l3-agent
-			- neutron-metadata-agent
-			- neutron-metering-agent
-			- neutron-openvswitch-agent
-### 5. Nova
-
-- Đầu tiên, check dịch vụ `openstack-nova-api`
-	- Nếu DOWN, cảnh báo Cirtical
-		- Nếu chạy, check tiếp các dịch vụ bằng câu lệnh `openstack compute service list`
-		- Kiểm tra lần lượt các dịch vụ DOWN (trên từng node)
-			- nova-cert 
-			- nova-compute 
-			- nova-conductor 
-			- nova-consoleauth 
-			- nova-scheduler
-			
-## II. Tài nguyên
-
-### 1. Liệt kê tổng số Image
-
-- Sử dụng lệnh `openstack image list`
-- Đếm số Image
-
-### 2. Liệt kê số Network
-
-- Sử dụng lệnh `openstack ip availability list`
-- Đếm số dải mạng
-- Thống kê IP đã sử dụng theo từng dải mạng
-
-### 3. Đếm số VMs đang hoạt động
-
-- Sử dụng lệnh `openstack server list --all-projects`
-- Đếm số VM
-	- Tổng số VM
-	- Số VM đang hoạt động
-	- Số VM không hoạt động (Shutoff, error,...)
+	- Ví dụ:
 	
-### 4. Đếm số Volume
-
-- Sử dụng lệnh `openstack volume list --all`
-- Đếm số Volume:
-	- Tổng số
-	- Đang được sử dụng
-	- Chưa được sử dụng
+	```
+	OPENSTACK_Cinder /usr/lib/check_mk_agent/plugins/check_cinder
+	OPENSTACK_Neutron /usr/lib/check_mk_agent/plugins/check_neutron
+	OPENSTACK_Keystone /usr/lib/check_mk_agent/plugins/check_keystone
+	OPENSTACK_Nova /usr/lib/check_mk_agent/plugins/check_nova
+	OPENSTACK_Glance /usr/lib/check_mk_agent/plugins/check_glance	
+	OPENSTACK_Volume /usr/lib/check_mk_agent/plugins/check_volumes
+	OPENSTACK_Images /usr/lib/check_mk_agent/plugins/check_images
+	OPENSTACK_Networks /usr/lib/check_mk_agent/plugins/check_networks
+	OPENSTACK_VMs_State /usr/lib/check_mk_agent/plugins/check_instances_state
+	```
