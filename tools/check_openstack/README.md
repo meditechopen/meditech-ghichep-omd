@@ -4,8 +4,8 @@
 
 ### Menu
 
-[1. Tải Plugin](#1)
-[2. Cấu hình check_mk](#2)
+- [1. Tải Plugin](#1)
+- [2. Cấu hình check_mk](#2)
 
 <a name="1" />
 ### 1. Tải plugin
