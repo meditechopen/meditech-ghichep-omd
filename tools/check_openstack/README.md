@@ -1,6 +1,14 @@
-## Hướng dẫn sử dụng vào check_mk
+## Sử dụng cho check_mk
 
-### Tải plugin
+**Chú ý**: Các bước này làm trên node `controller` của OpenStack
+
+### Menu
+
+[1. Tải Plugin](#1)
+[2. Cấu hình check_mk](#2)
+
+<a name="1" />
+### 1. Tải plugin
 
 - Tải plugin ở 2 thư mục `check_resoucres` và `check_services`
 
@@ -17,13 +25,12 @@ cd /opt/check_openstack
 chmod +x *
 ```
 
-### check_mk
-
-**Chú ý**: Các bước này làm trên node `controller` của OpenStack
+<a name="2" />
+### 2. Cấu hình check_mk
 
 - **Bước 1**: Copy các file plugin
 
-[Hướng dẫn cài check_mk Agent trên máy cần giám sát.](https://github.com/hoangdh/meditech-ghichep-omd/blob/master/docs/2.Install-agent.md)
+[Hướng dẫn cài check_mk Agent trên máy cần giám sát.](/docs/2.Install-agent.md)
 
 Thư mục mặc định: `/usr/lib/check_mk_agent/plugins`
 
