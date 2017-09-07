@@ -11,7 +11,7 @@ mkdir -p /etc/check_mk/plugins/
 source /root/keystonerc_admin
 
 ## Get all VMs are running
-openstack server list --all-projects > /tmp/instance_list.h2
+openstack server list --all-projectsopenstack server list --all-projects > /tmp/instance_list.h2
 
 ## Count total VMs 
 vms_total=$(cat /tmp/instance_list.h2 | awk  '{ print $3 }' FS="|" | grep -Ev "^ Name|^$"  | wc -l)
@@ -37,9 +37,12 @@ do
 			CODE=0
 		else
 			CODE=2
-		fi
-		echo -e "echo \"$COM: $NAME is $STATUS\"\nexit $CODE" > /etc/check_mk/plugins/check_vm-$NAME
+			
+		echo -e "echo \"$NAME is $STATUS\"\nexit $CODE" > /etc/check_mk/plugins/check_vm-$NAME
 		chmod +x /etc/check_mk/plugins/check_vm-$NAME
+			
+		fi
+
 	done
 done
 
@@ -55,7 +58,7 @@ sed -i '/check_vm-/d' /etc/check_mk/mrpe.cfg
 
 for vm in $list_vms
 do
-	echo -e "\nOPENSTACK-VM-$vm /etc/check_mk/plugins/check_vm-$vm" >> /etc/check_mk/mrpe.cfg
+	echo -e "\n$COM /etc/check_mk/plugins/check_vm-$vm" >> /etc/check_mk/mrpe.cfg
 done
 
 # Remove all empty line in mrpe.cfg
