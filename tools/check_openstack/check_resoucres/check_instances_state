@@ -1,0 +1,80 @@
+#!/bin/bash
+
+###
+#
+# Check VMs on all projects
+# Author: HoangDH - daohuyhoang87@gmail.com
+# Release: 1-Sep-2017 - 14:01PM
+#
+###
+source /root/keystonerc_admin
+
+## Get all VMs are running
+openstack server list --all-projects > /tmp/instance_list.h2
+
+#vms_run=$(cat /tmp/instance_list.h2 | awk  '{ print $3 }' FS="|")
+instances=$(cat /tmp/instance_list.h2 | awk  '{ print $3 }' FS="|" | egrep -v "^$|^ Name" | cut -d " " -f 2)
+vms_total=$(cat /tmp/instance_list.h2 | awk  '{ print $3 }' FS="|" | grep -Ev "^ Name|^$"  | wc -l)
+vms_run=$(cat /tmp/instance_list.h2 | grep -w "ACTIVE" | awk  '{ print $3 }' FS="|" | wc -l)
+
+## Show usage statitics for instances
+
+# Delete all file check_vm
+rm -rf /etc/check_mk/plugins/check_vm-*
+
+for instance in $instances
+do
+	nova diagnostics $instance > /tmp/us_$instance.h2 2>&1
+	
+	f=$(cat /tmp/us_$instance.h2 | egrep "^ERROR|CommandError")
+	if [ -z "$f" ]
+	then
+		memory=$(expr `cat /tmp/us_$instance.h2 | grep -w memory | head -n 1 | awk -F "|" {'print $3'} | cut -d " " -f 2` / 1024)
+		txs=`cat /tmp/us_$instance.h2 | grep "_tx" | awk -F "|" {'print $2'} | cut -d " " -f 2`
+		
+		# for tx in $txs
+		# do
+			
+		# done
+		## Check info RAM,CPU,Network
+		#
+		#
+		#
+		####
+		
+		echo -e "echo \"$instance is UP. RAM: $memory MB\"\nexit 0" > /etc/check_mk/plugins/check_vm-$instance
+		chmod +x /etc/check_mk/plugins/check_vm-$instance
+	else
+		f=$(cat /tmp/us_$instance.h2 | egrep "^ERROR|CommandError")
+		echo -e "echo \"$instance is DOWN\"\nexit 2" > /etc/check_mk/plugins/check_vm-$instance
+		chmod +x /etc/check_mk/plugins/check_vm-$instance				
+	fi
+	rm -rf /tmp/us_$instance.h2
+done
+
+
+
+#### Configure MRPE
+
+# List all file configure check_vms
+list_vms=`ls /etc/check_mk/plugins/ | grep -w "check_vm-*" | awk {'print $2'} FS="-"`
+
+# Delete all configure in mrpe.cfg file
+sed -i '/check_vm-/d' /etc/check_mk/mrpe.cfg
+
+# Write configure to mrpe.cfg file
+
+for vm in $list_vms
+do
+	echo -e "\nOPENSTACK-VM-$vm /etc/check_mk/plugins/check_vm-$vm" >> /etc/check_mk/mrpe.cfg
+done
+
+# Remove all empty line in mrpe.cfg
+
+sed -i '/^\s*$/d' /etc/check_mk/mrpe.cfg
+
+# Remove temp. files
+rm -rf /tmp/instance_list.h2
+
+echo "Server Running: $vms_run; Server non-running: $(expr $vms_total - $vms_run)/$vms_total"
+exit 0

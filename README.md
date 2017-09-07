@@ -31,6 +31,7 @@
 	- [Quản lý các site trên OMD](docs/Management-OMD.md)
 	- [Giám sát dịch vụ RabbitMQ](docs/8.Monitor-RabbitMQ.md)
 	- [Giám sát dịch vụ MySQL](docs/9.Monitor-MySQL.md)
-	- [Backup/Restore một site trong OMD][docs/10.Backup-site.md]
+	- [Backup/Restore một site trong OMD](docs/10.Backup-site.md)
+	- [Giám sát OpenStack](docs/11.2.GiamSat-OpenStack.md)
 	
 (C) MediTech JSC,. - https://meditech.vn
