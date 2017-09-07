@@ -4,7 +4,7 @@
 #
 # Check VMs on all projects
 # Author: HoangDH - daohuyhoang87@gmail.com
-# Release: 7-Sep-2017 - 13:05PM
+# Release: 7-Sep-2017 - 15:45PM
 #
 ###
 mkdir -p /etc/check_mk/plugins/
@@ -13,32 +13,34 @@ source /root/keystonerc_admin
 ## Get all VMs are running
 openstack server list --all-projects > /tmp/instance_list.h2
 
-## Get VMs's UUID
-instances=$(cat /tmp/instance_list.h2 | awk  '{ print $2 }' FS="|" | egrep -v "^$|^ ID" | cut -d " " -f 2)
-
 ## Count total VMs 
 vms_total=$(cat /tmp/instance_list.h2 | awk  '{ print $3 }' FS="|" | grep -Ev "^ Name|^$"  | wc -l)
 
 ## Count VMs running
 vms_run=$(cat /tmp/instance_list.h2 | grep -w "ACTIVE" | awk  '{ print $3 }' FS="|" | wc -l)
 
-## Show usage statitics for instances
+## Get COM nodes
+COMS=$(openstack host list | grep -w "compute" | awk {'print $2'} FS="|" | cut -d " " -f 2 | sort -u)
 
 # Delete all file check_vm
 rm -rf /etc/check_mk/plugins/check_vm-*
 
-for instance in $instances
+for COM in $COMS
 do
-	STATUS=$(cat /tmp/instance_list.h2 | grep -w $instance | awk {'print $4'} FS="|" | cut -d " " -f 2)
-	NAME=$(cat /tmp/instance_list.h2 | grep -w $instance | awk {'print $3'} FS="|" | cut -d " " -f 2)
-	if [ "$STATUS" = "ACTIVE" ]
-	then
-		echo -e "echo \"$NAME is UP\"\nexit 0" > /etc/check_mk/plugins/check_vm-$NAME
+	instances=$(openstack server list --host $COM --all-projects | awk  '{ print $2 }' FS="|" | egrep -v "^$|^ ID" | cut -d " " -f 2)
+	for instance in $instances
+	do
+		STATUS=$(cat /tmp/instance_list.h2 | grep -w $instance | awk {'print $4'} FS="|" | cut -d " " -f 2)
+		NAME=$(cat /tmp/instance_list.h2 | grep -w $instance | awk {'print $3'} FS="|" | cut -d " " -f 2)
+		if [ "$STATUS" = "ACTIVE" ]
+		then
+			CODE=0
+		else
+			CODE=2
+		fi
+		echo -e "echo \"$COM: $NAME is $STATUS\"\nexit $CODE" > /etc/check_mk/plugins/check_vm-$NAME
 		chmod +x /etc/check_mk/plugins/check_vm-$NAME
-	else
-		echo -e "echo \"$NAME is DOWN\"\nexit 2" > /etc/check_mk/plugins/check_vm-$NAME
-		chmod +x /etc/check_mk/plugins/check_vm-$NAME
-	fi
+	done
 done
 
 #### Configure MRPE
