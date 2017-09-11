@@ -2,9 +2,9 @@
 
 ###
 #
-# Check VMs on all projects
+# Check VMs on all project
 # Author: HoangDH - daohuyhoang87@gmail.com
-# Release: 9-Sep-2017 - 11:14PM
+# Release: 8-Sep-2017 - 19:45PM
 #
 ###
 mkdir -p /etc/check_mk/plugins/
@@ -44,30 +44,6 @@ do
 			chmod +x /etc/check_mk/plugins/check_vm+$NAME
 			# Write to mrpe.cfg file
 			echo -e "\n$COM-$NAME /etc/check_mk/plugins/check_vm+$NAME" >> /etc/check_mk/mrpe.cfg
-		else
-			IPS=$(cat /tmp/instance_list.h2 | grep -w $instance |  awk {'print $5'} FS="|" | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
-			flag_status=""
-			CODE=0
-			for IP in $IPS
-			do
-				ping $IP -c 3 > /tmp/instance_ping.h2
-				flag=$(cat /tmp/instance_ping.h2 | grep -w 'ttl')
-				if [ -z "$flag" ]
-				then
-					CODE=1
-					flag_status=$(echo $flag_status $IP is DOWN)
-				else
-					flag_status=$(echo $flag_status $IP is UP)
-				fi
-				rm -rf /tmp/instance_ping.h2
-			done
-			if [ $CODE = 1 ]
-			then
-				echo -e "echo \"$NAME; IP: $flag_status -- $STATUS\"\nexit $CODE" > /etc/check_mk/plugins/check_vm+$NAME
-				chmod +x /etc/check_mk/plugins/check_vm+$NAME
-				# Write to mrpe.cfg file
-				echo -e "\n$COM-$NAME /etc/check_mk/plugins/check_vm+$NAME" >> /etc/check_mk/mrpe.cfg
-			fi			
 		fi
 	done
 done
