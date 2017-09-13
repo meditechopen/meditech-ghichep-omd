@@ -1,0 +1,50 @@
+#!/bin/bash
+###
+#
+# Check Nova Service
+# Author: HoangDH - daohuyhoang87@gmail.com
+# Release: 29/8/2017 - 5:30PM
+#
+###
+i=0
+x=0
+## Check status very Nova's service
+for service in openstack-nova-api openstack-nova-conductor openstack-nova-consoleauth openstack-nova-novncproxy openstack-nova-scheduler 
+do
+	x=`expr $x + 1`
+	f=$(systemctl status $service | grep 'active (running)')
+	if [ -z "$f" ]
+	then
+		echo $service >> /tmp/err_nova.h2
+		# if [ "$service" = "openstack-nova-api" ]
+		# then
+			# i=0
+			# echo 1
+			# break
+		# fi
+	else
+		i=`expr $i + 1`
+	fi
+done
+
+case $i in
+	$x)
+		echo "Nova is running. "
+		exit 0
+		;;
+	[1-$x]*)
+		s=`cat /tmp/err_nova.h2`
+		s=$(echo $s |  tr " " ";")
+		rm -rf /tmp/err_nova.h2
+		echo -e "Nova service is/are not running: "$s
+		exit 1
+		;;	
+	0) 
+		echo "Nova-api are not running."
+		exit 2
+		;;
+	*)
+		echo "Nova is/are not running."
+		exit 3
+		;;	
+esac

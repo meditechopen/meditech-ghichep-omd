@@ -1,0 +1,24 @@
+#!/bin/bash
+###
+#
+# Check Neutron agents
+# Author: HoangDH - daohuyhoang87@gmail.com
+# Release: 29/8/2017 - 5:23PM
+#
+###
+
+
+source /root/keystonerc_admin
+openstack network agent list > /tmp/info_neutron.h2
+
+nodes=`cat /tmp/info_neutron.h2 | grep neutron-openvswitch-agent | grep -v "True" | awk {'print $4'} FS="|" | sort -u | cut -d " " -f 2`
+
+if [ -z $nodes ]
+then
+	echo "Neutron-OpenVSwitch-agent is running on all compute node."
+	exit 0
+else
+	echo "Neutron-OpenVSwitch-agent is not running on computes node: "$nodes
+	exit 1
+fi 
+rm -rf /tmp/info_neutron.h2
