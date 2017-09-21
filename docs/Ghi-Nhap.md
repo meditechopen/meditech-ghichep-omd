@@ -1,10 +1,32 @@
 ## Thư mục lưu trữ các metric của các host khi thu thập
 
+- CACHE:
+
 ```
 /opt/omd/sites/site1/tmp/check_mk/cache
 ```
 
+- Kết quả lưu trữ các lượt Check trong ngày:
+
+```
+/opt/omd/sites/site1/var/nagios/nagios.log
+```
+
+- Lưu trữ:
+
+```
+/opt/omd/sites/site1/var/nagios/archive
+```
+
 - https://mathias-kettner.de/checkmk_omd.html
+
+## Xem lại kết quả trên Dashboard
+
+**Views > Others > Host and Service Events**
+
+<img src="/images/ghinhap1.png" />
+
+Ví dụ, xem lại kết quả ngày 20/9/2017
 
 ## Lệnh check_mk
 
