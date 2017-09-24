@@ -11,8 +11,7 @@
 
 #### Phần 1: Lý thuyết
 
-- [1. Tổng quan về OMD - Check_MK](docs/1.tongquan-omd.md)
-- [2. Tại sao sử dụng OMD?](docs/2.taisaosudung-omd.md)
+- [1. Tổng quan về OMD - Check_MK](https://github.com/meditechopen/meditech-ghichep-omd/blob/master/docs/1.%20OMD%20la%20gi%20va%20tai%20sao%20nen%20dung%20OMD.md)
 
 #### Phần 2: Thực hành
 
