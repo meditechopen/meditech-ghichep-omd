@@ -113,7 +113,7 @@ ln -s /opt/omddata/sites/ /opt/omd/sites
 
 - Copy OCF Agent vào thư viện
 
-Link download [OMD]http://blog.simon-meggle.de/assets/omd-cluster-pacemaker-4/OMD.txt(#)
+Link download [OMD](http://blog.simon-meggle.de/assets/omd-cluster-pacemaker-4/OMD.txt#)
 
 - Tạo thư mục chứa agent
 
