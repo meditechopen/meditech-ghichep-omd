@@ -164,6 +164,13 @@ daemon_dumps_core=0
 
 Ví dụ, xem lại kết quả ngày 20/9/2017
 
+
+## Tự động phát hiện dịch vụ mới và xóa bỏ dịch vụ bị lỗi
+
+**WATO > Host & Service Parameters > Monitoring Configuration > Inventory and Check_MK settings > Periodic service discovery**
+
+<img src="/images/auto-update-services.png" />
+
 ## Lệnh check_mk
 
 ```

@@ -2,6 +2,14 @@
 
 ### Part.1  Chuẩn bị server
 
+- Đồng nhất về thời gian:
+	
+	```
+	timedatectl set-timezone Asia/Ho_Chi_Minh
+	yum install ntp -y
+	ntpdate pool.ntp.org
+	```
+	
 - Các thành phần, yếu tố cần thiết:
 	- OMD
 	- DRBD
@@ -15,6 +23,7 @@
 		- Sử dụng một Virtual IP
 		- Site của OMD
 - Các bước cài đặt:
+	- Đồng nhất thời gian giữa 2 server
 	- Set hostname cho từng node
 	- Ghi thông tin vào file host từng node
 	- Cấu hình LVM
