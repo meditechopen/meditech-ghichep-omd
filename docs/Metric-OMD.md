@@ -21,6 +21,7 @@ Những lợi thế của RRDs so với cách lưu trữ MySQL cổ điển:
 |3| 90 ngày | 30 phút |4320|
 |4| 4 năm | 6 tiếng |5840 |
 
+
 - Giá trị được lưu trữ: Giá trị ở mức tối đa (cao nhất), Giá trị tối thiểu (nhỏ nhất) và giá trị trung bình.
 - Mỗi metric có dung lượng là 384,952 byte
 	- Được tính như sau: 
@@ -28,3 +29,9 @@ Những lợi thế của RRDs so với cách lưu trữ MySQL cổ điển:
 	- Nhân với 3 giá trị (Tối đa, tối thiểu và trung bình)
 	- Nhân với 8 bytes dữ liệu - Dung lượng của metric
 	- Cộng thêm 2872 bytes cho phần Metadata (Tiêu đề của dữ liệu)
+- Theo tính toán, nếu do metric theo từng phút thì một năm. Một metric dữ liệu chiếm khoảng 4MB. (365 * 24 * 60 * 8)
+
+2. Ghi dữ liệu ra rrdcached
+
+- Check_MK không ghi các dữ liệu trực tiếp vào nơi lưu trữ (Như SAN, NAS,...) mà chuyển dữ liệu sang rrdcache. Như vậy sẽ giảm số lượng truy xuất dữ liệu.
+- ...
