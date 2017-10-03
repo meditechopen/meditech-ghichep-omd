@@ -1,5 +1,7 @@
 ## HA cho OMD
 
+<img src="/images/HA-OMD-check_mk.png" width=70% />
+
 ### Part.1  Chuẩn bị server
 
 - Đồng nhất về thời gian:
