@@ -179,4 +179,75 @@ pcs constraint colocation add DrbdFS with omd-site1
 pcs constraint order DrbdFS then omd-site1
 ```
 
-### Part.6 Đang cập nhật
+### Part.6 Tạo một site mới khi đã cấu hình HA
+
+- **Bước 1:** Tạo một site mới trên node đang hoạt động (Ví dụ: `omd1`)
+
+```
+[root@omd1 ~]# omd create site2
+```
+
+- **Bước 2:** Xem thông tin user `site2`
+
+```
+[root@omd1 ~]# cat /etc/fstab | grep site2 && cat /etc/passwd | grep site2
+tmpfs  /opt/omd/sites/site2/tmp tmpfs noauto,user,mode=755,uid=site2,gid=site2 0 0
+site2:x:992:1002:OMD site site2:/omd/sites/site2:/bin/bash
+```
+
+- **Bước 3:** Sang server `omd2`, ghi thông tin `site2` vào `/etc/fstab`
+
+```
+[root@omd2 ~]# echo "tmpfs  /opt/omd/sites/site2/tmp tmpfs noauto,user,mode=755,uid=site2,gid=site2 0 0" >> /etc/fstab
+```
+
+- **Bước 3:** Tạo thông tin cho user `site2` (Trên `omd2`)
+
+```
+[root@omd2 ~]# groupadd -g 1002 site2
+[root@omd2 ~]# usermod -aG site2 apache
+[root@omd2 ~]# useradd -u 992 site2 -d '/omd/sites/site2' -g site2 -G omd -s '/bin/bash'
+```
+
+- **Bước 4:** Tạo resource cho `site2` và cấu hình ràng buộc (Cấu hình trên server bất kỳ)
+
+```
+[root@omd2 ~]# pcs resource create omd-site2 ocf:simon-meggle:OMD site=site2 op monitor interval="10s" timeout="20s"  op start interval="0s" timeout="90s" op stop interval="0s" timeout="100s"
+
+[root@omd2 ~]# pcs constraint colocation add DrbdFS with omd-site2
+[root@omd2 ~]# pcs constraint order DrbdFS then omd-site2
+
+[root@omd2 ~]# pcs resource cleanup --all
+```
+
+- **Bước 5:** Cấu hình RRDCached của OMD
+
+Sửa file `vi /opt/omd/sites/site1/etc/rrdcached.conf`
+
+```
+# Data is written to disk every TIMEOUT seconds. If this option is
+# not specified the default interval of 300 seconds will be used.
+#TIMEOUT=3600
+TIMEOUT=180
+
+# rrdcached will delay writing of each RRD for a random
+# number of seconds in the range [0,delay). This will avoid too many
+# writes being queued simultaneously. This value should be no
+# greater than the value specified in TIMEOUT.
+#RANDOM_DELAY=1800
+RANDOM_DELAY=90
+
+# Every FLUSH_TIMEOUT seconds the entire cache is searched for old
+values
+# which are written to disk. This only concerns files to which
+# updates have stopped, so setting this to a high value, such as
+# 3600 seconds, is acceptable in most cases.
+#FLUSH_TIMEOUT=7200
+FLUSH_TIMEOUT=360
+```
+
+- Khởi động lại dịch vụ
+
+```
+omd reload site2 rrdcached 
+```
