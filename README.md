@@ -50,7 +50,7 @@
 - [2. Hướng dẫn sử dụng Nagvis](/prepare/2. Huong-dan-add-va-su-dung-Shape.md)
 - [3. Hướng dẫn bật Inventory để kiểm tra thông số phần mềm và phần cứng](/prepare/3. Inventory.md)
 - [4. Đẩy dữ liệu ra Mysql](/prepare/4. pull-data-to-mysql.md)
-- [5. Thư mục và cách tổ chức dữ liệu trong OMD](/prepare/5. Thu-muc-va-cach-to-chuc-du-lieu-trong-OMD.md)
+- [5. Thư mục và cách tổ chức dữ liệu trong OMD](/prepare/5.Thu-muc-va-cach-to-chuc-du-lieu-trong-OMD.md)
 - [6. Một số thủ thuật với OMD](/prepare/6. Mot-so-thu-thuat-voi-OMD.md)
 
 
