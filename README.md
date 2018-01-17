@@ -22,7 +22,7 @@
 	- [5.1 Cấu hình gửi mail cảnh báo sử dụng Gmail](docs/5.1.Send-Noitify.md)
 	- [5.2 Cấu hình gửi cảnh báo mail sử dụng ssmtp](docs/5.2.Send-mail-via-ssmtp.md)
 	- [5.3. Cấu hình gửi cảnh báo qua Slack](/docs/5.3-Send-Noitify_Slack.md)
-	- [5.4. Sửa nội dung mail cảnh báo](/docs/5.3-Send-Noitify_Slack.md)
+	- [5.4. Sửa nội dung mail cảnh báo](/docs/5.4.Edit-Mail-Notify.md)
 	- [5.5. Cấu hình cảnh báo qua Telegram](/docs/5.5.Send-notify-via-telegram.md)
 - [6. Thêm plugin vào OMD](docs/6.Add-plugins.md)
 - [7. Distributed Monitoring](docs/7.Distributed.md)
