@@ -4,35 +4,35 @@
 
 #### 1. Cài đặt các gói cần thiết: 
 
-	```sh
-	yum install gcc glibc glibc-common gd gd-devel make net-snmp openssl-devel xinetd unzip httpd php php-fpm curl wget -y
-	```
+```sh
+yum install gcc glibc glibc-common gd gd-devel make net-snmp openssl-devel xinetd unzip httpd php php-fpm curl wget -y
+```
 	
 #### 2. Tại máy chủ mysql, tạo user DB và cho phép remote DB :
 
-	```sh
-	GRANT SELECT, SHOW DATABASES ON *.* TO 'mysqlmonitor'@'ip-check_mk' IDENTIFIED BY 'mysqlmonitor';
-	```
+```sh
+GRANT SELECT, SHOW DATABASES ON *.* TO 'mysqlmonitor'@'ip-check_mk' IDENTIFIED BY 'mysqlmonitor';
+```
 	
 #### 3. Tải plugin về :
 
-	```sh
-	 wget https://labs.consol.de/assets/downloads/nagios/check_mysql_health-2.2.2.tar.gz
-	```
+```sh
+wget https://labs.consol.de/assets/downloads/nagios/check_mysql_health-2.2.2.tar.gz
+```
 	
 #### 4. Giải nén :
 
-	```sh
-	tar -xzvf check_mysql_health-2.2.2.tar.gz
-	```
+```sh
+tar -xzvf check_mysql_health-2.2.2.tar.gz
+```
 	
 #### 5. Biên dịch và cài đặt :
 
-	```sh
-	cd check_mysql_health-2.2.2/
-	./configure --prefix=/usr/lib/check_mk_agent/plugins --with-nagios-user=root --with-nagios-group=root
-	make && make install
-	```
+```sh
+cd check_mysql_health-2.2.2/
+./configure --prefix=/usr/lib/check_mk_agent/plugins --with-nagios-user=root --with-nagios-group=root
+make && make install
+```
 	
 #### 6. Tạo file mrpe.conf và cấu hình :
 
